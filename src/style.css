@@ -27,6 +27,10 @@
   --danger-bg: rgba(239, 68, 68, 0.1);
   --danger-border: rgba(239, 68, 68, 0.4);
 
+  --unknown: #6b7280;
+  --unknown-bg: rgba(107, 114, 128, 0.1);
+  --unknown-border: rgba(107, 114, 128, 0.4);
+
   --radius: 16px;
   --radius-sm: 10px;
   --font: 'Noto Sans JP', sans-serif;
@@ -455,6 +459,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: var(--danger-bg);
 }
 
+.overall-card.status-unknown {
+  border-color: var(--unknown);
+  background: var(--unknown-bg);
+}
+
 .overall-header {
   display: flex;
   align-items: flex-start;
@@ -520,6 +529,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-left: 3px solid var(--danger);
 }
 
+.item-card.status-unknown {
+  border-left: 3px solid var(--unknown);
+}
+
 .item-header {
   display: flex;
   align-items: center;
@@ -563,6 +576,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: var(--danger-bg);
   color: var(--danger);
   border: 1px solid var(--danger-border);
+}
+
+.status-badge-inline.unknown {
+  background: var(--unknown-bg);
+  color: var(--unknown);
+  border: 1px solid var(--unknown-border);
 }
 
 .item-detail {

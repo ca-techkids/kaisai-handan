@@ -60,6 +60,7 @@ function statusEmoji(status) {
     if (status === 'ok') return '✅'
     if (status === 'warn') return '⚠️'
     if (status === 'danger') return '🛑'
+    if (status === 'unknown') return '❔'
     return '❓'
 }
 
@@ -67,6 +68,7 @@ function statusLabel(status) {
     if (status === 'ok') return '問題なし'
     if (status === 'warn') return '注意事項あり'
     if (status === 'danger') return '危険'
+    if (status === 'unknown') return '情報なし'
     return '不明'
 }
 
@@ -140,14 +142,14 @@ function buildPrompt(date, type, location) {
 
 {
   "overall": {
-    "status": "ok|warn|danger",
+    "status": "ok|warn|danger|unknown",
     "summary": "全体的なまとめ（2〜3文程度）"
   },
   "items": [
     {
       "title": "項目名",
-      "status": "ok|warn|danger",
-      "detail": "問題なしの場合は「現時点で問題となる情報は確認されていません。」と記載。問題がある場合は具体的な内容を記載。",
+      "status": "ok|warn|danger|unknown",
+      "detail": "問題なしの場合は「現時点で問題となる情報は確認されていません。」と記載。問題がある場合は具体的な内容を記載。情報が存在しない場合はその旨を記載。",
       "links": [
         { "text": "リンクテキスト", "url": "https://..." }
       ]
@@ -159,9 +161,10 @@ statusの基準:
 - ok: 問題なし
 - warn: 注意が必要な情報あり
 - danger: 重大な問題あり
+- unknown: 情報なし（例: 該当日の天気予報がまだ発表されていない等）
 
-全体のステータス (overall.status) は各 items の中で最も深刻なステータスに合わせること。
-重要な指示: 全ての項目において、結果の如何に関わらず（「問題なし」の場合でも）、調査で実際に参考にしたWebサイトのリンクを「必ず」1つ以上 \`links\` 配列に含めて出力してください。
+全体のステータス (overall.status) は各 items の中で最も深刻なステータスに合わせること（優先度: danger > warn > unknown > ok）。
+重要な指示: 全ての項目において、結果の如何に関わらず（「問題なし」や「情報なし」の場合でも可能な限り）、調査で実際に参考にしたWebサイトのリンクを「必ず」1つ以上 \`links\` 配列に含めて出力してください。
 `
 
     if (type === 'real') {
