@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>開催判断支援くん（ベータ版）</title>
+  <meta name="description" content="イベントの開催日時と開催場所を入力するだけで、Gemini AIがインターネット情報を収集し、開催の可否を判定します。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="container">
+    <header class="app-header">
+      <div class="logo-icon">📅</div>
+      <h1>開催判断支援くん<span class="beta-badge">ベータ版</span></h1>
+      <p class="subtitle">AIがイベントの開催可否を判定します</p>
+    </header>
+
+    <main>
+      <!-- 入力フォーム -->
+      <section class="card form-card">
+        <h2 class="form-title">イベント情報を入力</h2>
+
+        <div class="form-group">
+          <label for="api-key" class="form-label">Gemini APIキー</label>
+          <input type="password" id="api-key" class="form-input" placeholder="例: AIzaSy.." />
+          <p class="form-hint">
+            APIキーは <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer"
+              style="color: var(--accent); text-decoration: underline;">Google AI Studio</a> から取得できます。
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="event-date" class="form-label">開催日付</label>
+          <input type="date" id="event-date" class="form-input" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">開催形式</label>
+          <div class="toggle-group">
+            <button id="btn-real" class="toggle-btn active" data-type="real">
+              <span class="toggle-icon">📍</span> リアル
+            </button>
+            <button id="btn-online" class="toggle-btn" data-type="online">
+              <span class="toggle-icon">💻</span> オンライン
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group" id="location-group">
+          <label for="event-location" class="form-label">開催場所</label>
+          <input type="text" id="event-location" class="form-input" placeholder="例: 渋谷駅" />
+          <p class="form-hint">駅名、施設名、住所などを入力してください</p>
+        </div>
+
+        <button id="check-btn" class="check-btn">
+          <span class="btn-icon">🔍</span>
+          <span class="btn-text">開催可否を判定する</span>
+        </button>
+      </section>
+
+      <!-- ローディング -->
+      <section id="loading-section" class="loading-section hidden">
+        <div class="spinner-wrapper">
+          <div class="spinner"></div>
+        </div>
+        <p class="loading-text">AIが情報を収集・分析中...</p>
+        <p class="loading-sub">Gemini がインターネットを検索しています。しばらくお待ちください。</p>
+      </section>
+
+      <!-- エラー -->
+      <section id="error-section" class="error-section hidden">
+        <div class="error-card">
+          <div class="error-icon">⚠️</div>
+          <h2 class="error-title">エラーが発生しました</h2>
+          <p id="error-message" class="error-message"></p>
+          <button id="retry-btn" class="retry-btn">もう一度試す</button>
+        </div>
+      </section>
+
+      <!-- 結果表示 -->
+      <section id="result-section" class="result-section hidden">
+        <!-- 全体サマリー -->
+        <div id="overall-card" class="card overall-card">
+          <div class="overall-header">
+            <div id="overall-badge" class="status-badge overall-badge"></div>
+            <div class="overall-text">
+              <h2 class="overall-title">総合判定</h2>
+              <p id="overall-summary" class="overall-summary"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 各項目 -->
+        <div id="items-container" class="items-container"></div>
+
+        <!-- 注意書き -->
+        <p class="disclaimer">
+          ※ この判定はAIによる参考情報です。最終的な判断は必ずご自身でご確認ください。
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

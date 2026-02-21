@@ -1,0 +1,17 @@
+{
+  "name": "kaisai-handan",
+  "version": "1.0.0",
+  "description": "開催判断くん - Gemini APIを使ってイベントの開催可否を判定するWebアプリ",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@google/genai": "^0.7.0"
+  },
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}
