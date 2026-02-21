@@ -39,10 +39,9 @@ npm run dev
 
 ## デプロイ設定（GitHub Pages）
 
-1. GitHub リポジトリの **Settings > Secrets and variables > Actions** を開く
-2. `GEMINI_API_KEY` という名前で Gemini API キーを登録する
-3. **Settings > Pages** で `Source` を `GitHub Actions` に設定する
-4. `main` ブランチに push すると自動デプロイされます
+1. GitHub リポジトリの **Settings > Pages** を開く
+2. `Build and deployment`の`Source` を **GitHub Actions** に設定する
+3. 再度 `main` ブランチの Action を実行（または push）すると自動デプロイされます
 
 ## アプリの仕組みとGeminiモデルの更新
 
