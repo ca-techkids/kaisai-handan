@@ -2,7 +2,7 @@
 
 > イベントの開催日時と開催場所を入力するだけで、Gemini AI がインターネット情報を収集し、開催の可否を判定するWebアプリ
 
-🔗 **[アプリを開く](https://[your-username].github.io/kaisai-handan/)**
+🔗 **[アプリを開く](https://catk-candy.github.io/kaisai-handan/)**
 
 ## 機能
 
