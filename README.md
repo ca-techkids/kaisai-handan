@@ -8,6 +8,7 @@
 
 - **リアル開催** の場合: 天気予報・地震情報・事件事故情報・計画運休を調査
 - **オンライン開催** の場合: 大規模地震・通信障害（NTT/KDDI）・Zoom障害を調査
+- リアル開催の天気は、民間天気サイトに加えて Open-Meteo の数値予報も補助データとして確認
 - 各項目を **問題なし✅ / 注意事項あり⚠️ / 危険🛑** の3段階で表示
 - 参考リンク付きで根拠情報を提示
 
@@ -17,6 +18,7 @@
 |------|------|
 | フロントエンド | HTML / CSS / JavaScript |
 | AI | Gemini 3.5 Flash + Google Search Grounding |
+| 天気API | Open-Meteo Forecast API / Geocoding API |
 | SDK | `@google/genai` |
 | ビルド | Vite |
 | ホスティング | GitHub Pages |
