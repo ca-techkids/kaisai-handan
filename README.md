@@ -16,7 +16,7 @@
 | 項目 | 技術 |
 |------|------|
 | フロントエンド | HTML / CSS / JavaScript |
-| AI | Gemini 2.0 Flash + Google Search Grounding |
+| AI | Gemini 3.1 Flash Lite + Google Search Grounding |
 | SDK | `@google/genai` |
 | ビルド | Vite |
 | ホスティング | GitHub Pages |
@@ -46,14 +46,14 @@ npm run dev
 ## アプリの仕組みとGeminiモデルの更新
 
 このアプリは、ユーザーのブラウザ上で `@google/genai` SDK を介して直接 Gemini API にリクエストを送信しています。
-使用している AI モデル（例: `gemini-3-flash-preview`）が提供終了（非推奨化）になった場合、以下のファイルの該当箇所を最新のモデル名に書き換えるだけで対応できます。
+使用している AI モデル（例: `gemini-3.1-flash-lite`）が提供終了（非推奨化）になった場合、以下のファイルの該当箇所を最新のモデル名に書き換えるだけで対応できます。
 
 **修正するファイル:** `src/main.js`
 
 ```javascript
     const response = await ai.models.generateContent({
         // 👇 ここのモデル名を変更するだけです
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-3.1-flash-lite',
         contents: prompt,
         config: {
             tools: [{ googleSearch: {} }],
